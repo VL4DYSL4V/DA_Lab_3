@@ -3,14 +3,14 @@ library("psych")
 library("DescTools")
 library("e1071")
 
-myData <- read.csv('walmart_cleaned.csv')
+myData <- read.csv('output.csv')
 
-Weekly_Sales <- myData$Weekly_Sales
-Weekly_Sales_Name <- "Weekly_Sales"
-Unemployment <- myData$Unemployment
-Unemployment_Name <- "Unemployment"
-Fuel_Price <- myData$Fuel_Price
-Fuel_Price_Name <- "Fuel_Price"
+Happiness_Score <- myData$Happiness_Score
+Happiness_Score_Name <- "Happiness_Score"
+Family <- myData$Family
+Family_Name <- "Family"
+Freedom <- myData$Freedom
+Freedom_Name <- "Freedom"
 
 printDelimiterWithNewLines <- function() {
   cat("\n\n=========================================================================\n\n")
@@ -21,9 +21,9 @@ printEmptyLine <- function() {
 }
 
 buildFrequencyPolygons <- function() {
-  chart1 <- qplot(x = Weekly_Sales, geom = 'freqpoly')
-  chart2 <- qplot(x = Unemployment, geom = 'freqpoly')
-  chart3 <- qplot(x = Fuel_Price, geom = 'freqpoly')
+  chart1 <- qplot(x = Happiness_Score, geom = 'freqpoly')
+  chart2 <- qplot(x = Family, geom = 'freqpoly')
+  chart3 <- qplot(x = Freedom, geom = 'freqpoly')
   return(list(
     chart1=chart1,
     chart2=chart2,
@@ -247,37 +247,37 @@ anayzeOneVector <- function (vector, vectorName) {
 
 analyzeCorrelation <- function() {
   printDelimiterWithNewLines()
-  printCorellationCoefficient(Weekly_Sales, Unemployment, Weekly_Sales_Name, Unemployment_Name)
-  printCorellationCoefficient(Weekly_Sales, Fuel_Price, Weekly_Sales_Name, Fuel_Price_Name)
-  printCorellationCoefficient(Unemployment, Fuel_Price, Unemployment_Name, Fuel_Price_Name)
+  printCorellationCoefficient(Happiness_Score, Family, Happiness_Score_Name, Family_Name)
+  printCorellationCoefficient(Happiness_Score, Freedom, Happiness_Score_Name, Freedom_Name)
+  printCorellationCoefficient(Family, Freedom, Family_Name, Freedom_Name)
   printDelimiterWithNewLines()
-  printPValue(Weekly_Sales, Unemployment, Weekly_Sales_Name, Unemployment_Name)
-  printPValue(Weekly_Sales, Fuel_Price, Weekly_Sales_Name, Fuel_Price_Name)
-  printPValue(Unemployment, Fuel_Price, Unemployment_Name, Fuel_Price_Name)
+  printPValue(Happiness_Score, Family, Happiness_Score_Name, Family_Name)
+  printPValue(Happiness_Score, Freedom, Happiness_Score_Name, Freedom_Name)
+  printPValue(Family, Freedom, Family_Name, Freedom_Name)
   printDelimiterWithNewLines()
-  printDeterminationCoefficient(Weekly_Sales, Unemployment, Weekly_Sales_Name, Unemployment_Name)
-  printDeterminationCoefficient(Weekly_Sales, Fuel_Price, Weekly_Sales_Name, Fuel_Price_Name)
-  printDeterminationCoefficient(Unemployment, Fuel_Price, Unemployment_Name, Fuel_Price_Name)
+  printDeterminationCoefficient(Happiness_Score, Family, Happiness_Score_Name, Family_Name)
+  printDeterminationCoefficient(Happiness_Score, Freedom, Happiness_Score_Name, Freedom_Name)
+  printDeterminationCoefficient(Family, Freedom, Family_Name, Freedom_Name)
   printDelimiterWithNewLines()
 
-  printMultipleCorrelationCoefficient(Weekly_Sales_Name, c(Unemployment_Name, Fuel_Price_Name))
-  printMultipleCorrelationCoefficient(Unemployment_Name, c(Weekly_Sales_Name, Fuel_Price_Name))
-  printMultipleCorrelationCoefficient(Fuel_Price_Name, c(Weekly_Sales_Name, Unemployment_Name))
+  printMultipleCorrelationCoefficient(Happiness_Score_Name, c(Family_Name, Freedom_Name))
+  printMultipleCorrelationCoefficient(Family_Name, c(Happiness_Score_Name, Freedom_Name))
+  printMultipleCorrelationCoefficient(Freedom_Name, c(Happiness_Score_Name, Family_Name))
   printDelimiterWithNewLines()
-  printMultiplePValue(Weekly_Sales_Name, c(Unemployment_Name, Fuel_Price_Name))
-  printMultiplePValue(Unemployment_Name, c(Weekly_Sales_Name, Fuel_Price_Name))
-  printMultiplePValue(Fuel_Price_Name, c(Weekly_Sales_Name, Unemployment_Name))
+  printMultiplePValue(Happiness_Score_Name, c(Family_Name, Freedom_Name))
+  printMultiplePValue(Family_Name, c(Happiness_Score_Name, Freedom_Name))
+  printMultiplePValue(Freedom_Name, c(Happiness_Score_Name, Family_Name))
   printDelimiterWithNewLines()
-  printMultipleDeterminationCoefficient(Weekly_Sales_Name, c(Unemployment_Name, Fuel_Price_Name))
-  printMultipleDeterminationCoefficient(Unemployment_Name, c(Weekly_Sales_Name, Fuel_Price_Name))
-  printMultipleDeterminationCoefficient(Fuel_Price_Name, c(Weekly_Sales_Name, Unemployment_Name))
+  printMultipleDeterminationCoefficient(Happiness_Score_Name, c(Family_Name, Freedom_Name))
+  printMultipleDeterminationCoefficient(Family_Name, c(Happiness_Score_Name, Freedom_Name))
+  printMultipleDeterminationCoefficient(Freedom_Name, c(Happiness_Score_Name, Family_Name))
   printDelimiterWithNewLines()
 }
 
 buildFrequencyPolygons()
 
-anayzeOneVector(Weekly_Sales, Weekly_Sales_Name)
-anayzeOneVector(Fuel_Price, Fuel_Price_Name)
-anayzeOneVector(Unemployment, Unemployment_Name)
+anayzeOneVector(Happiness_Score, Happiness_Score_Name)
+anayzeOneVector(Freedom, Freedom_Name)
+anayzeOneVector(Family, Family_Name)
 
 analyzeCorrelation()
