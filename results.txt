@@ -1,0 +1,167 @@
+$chart1
+
+$chart2
+
+$chart3
+
+
+
+=========================================================================
+
+[1] "Summary of ' Happiness_Score ': "
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  2.839   4.510   5.286   5.379   6.269   7.587 
+
+[1] "Deciles of ' Happiness_Score ': "
+   10%    20%    30%    40%    50%    60%    70%    80%    90% 
+3.8780 4.3050 4.6594 5.0402 5.2860 5.7474 5.9864 6.4786 6.9706 
+
+[1] "Geometric Mean of ' Happiness_Score ':  5.25453375419954"
+
+[1] "Harmonic Mean of ' Happiness_Score ':  5.1269192112216"
+
+[1] "Mode of ' Happiness_Score ':  2.905, 3.739, 3.956, 4.252, 4.876, 5.057, 5.123, 5.129, 5.192, 5.813, 5.835, 5.987, 6.168, 6.269, 6.379, 7.119"
+
+[1] "Dispersion of ' Happiness_Score ':  1.30309273626529"
+
+[1] "Standard Deviation of ' Happiness_Score ':  1.1415308739869"
+
+[1] "Coefficient of Variation of ' Happiness_Score ':  21.2221909929816"
+
+[1] "Probabilistic Deviation of ' Happiness_Score ':  0.8795"
+
+[1] "Sampling Span of ' Happiness_Score ':  4.748"
+
+[1] "Concentration Interval of ' Happiness_Score ': ( 1.95435658438851 ,  8.8035418283099 )"
+
+[1] "Kurtosis of ' Happiness_Score ':  -0.858118964468075"
+
+[1] "Skewness of ' Happiness_Score ':  0.0698944395838097"
+
+
+=========================================================================
+
+
+
+=========================================================================
+
+[1] "Summary of ' Freedom ': "
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.2959  0.4132  0.3999  0.5167  0.6697 
+
+[1] "Deciles of ' Freedom ': "
+     10%      20%      30%      40%      50%      60%      70%      80% 
+0.188798 0.257276 0.325052 0.377634 0.413190 0.449224 0.489174 0.543270 
+     90% 
+0.590614 
+
+[1] "Geometric Mean of ' Freedom ':  0.364284489001505"
+
+[1] "Harmonic Mean of ' Freedom ':  0.274026977578999"
+
+[1] "Mode of ' Freedom ':  0, 0.19847, 0.37938, 0.40672, 0.46074, 0.46582, 0.53466"
+
+[1] "Dispersion of ' Freedom ':  0.0227055212587099"
+
+[1] "Standard Deviation of ' Freedom ':  0.150683513559745"
+
+[1] "Coefficient of Variation of ' Freedom ':  37.6806873307653"
+
+[1] "Probabilistic Deviation of ' Freedom ':  0.11042"
+
+[1] "Sampling Span of ' Freedom ':  0.66973"
+
+[1] "Concentration Interval of ' Freedom ': ( -0.0521546676633627 ,  0.851946413695109 )"
+
+[1] "Kurtosis of ' Freedom ':  -0.53092813513193"
+
+[1] "Skewness of ' Freedom ':  -0.383466859379719"
+
+
+=========================================================================
+
+
+
+=========================================================================
+
+[1] "Summary of ' Life_Expectancy ': "
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.4196  0.6404  0.5941  0.7876  1.0252 
+
+[1] "Deciles of ' Life_Expectancy ': "
+     10%      20%      30%      40%      50%      60%      70%      80% 
+0.228032 0.349024 0.500910 0.593882 0.640450 0.697056 0.742212 0.810110 
+     90% 
+0.877496 
+
+[1] "Geometric Mean of ' Life_Expectancy ':  0.525000574115208"
+
+[1] "Harmonic Mean of ' Life_Expectancy ':  0.399827984302251"
+
+[1] "Mode of ' Life_Expectancy ':  0, 0.62994, 0.92356"
+
+[1] "Dispersion of ' Life_Expectancy ':  0.0579800620706642"
+
+[1] "Standard Deviation of ' Life_Expectancy ':  0.240790494145147"
+
+[1] "Coefficient of Variation of ' Life_Expectancy ':  40.5334028773383"
+
+[1] "Probabilistic Deviation of ' Life_Expectancy ':  0.1839975"
+
+[1] "Sampling Span of ' Life_Expectancy ':  1.02525"
+
+[1] "Concentration Interval of ' Life_Expectancy ': ( -0.128317006244966 ,  1.31642595862592 )"
+
+[1] "Kurtosis of ' Life_Expectancy ':  -0.578302637803278"
+
+[1] "Skewness of ' Life_Expectancy ':  -0.567622803148049"
+
+
+=========================================================================
+
+
+
+=========================================================================
+
+[1] "Coefficient of correlation between  Happiness_Score  and  Life_Expectancy  is:  0.734491375141335"
+[1] "Coefficient of correlation between  Happiness_Score  and  Freedom  is:  0.556414442240603"
+[1] "Coefficient of correlation between  Life_Expectancy  and  Freedom  is:  0.369798914715241"
+
+
+=========================================================================
+
+[1] "P-value of  Happiness_Score  and  Life_Expectancy  is:  1.21734016789266e-54"
+[1] "P-value of  Happiness_Score  and  Freedom  is:  5.3084170878437e-27"
+[1] "P-value of  Life_Expectancy  and  Freedom  is:  1.21011382637522e-11"
+
+
+=========================================================================
+
+[1] "Coefficient of determination for ' Happiness_Score ' and ' Life_Expectancy ':  0.53947758015701"
+[1] "Coefficient of determination for ' Happiness_Score ' and ' Freedom ':  0.309597031533921"
+[1] "Coefficient of determination for ' Life_Expectancy ' and ' Freedom ':  0.13675123732457"
+
+
+=========================================================================
+
+[1] "Multiple correlation coefficient with ' Happiness_Score ' as dependent variable:  0.795888191208726"
+[1] "Multiple correlation coefficient with ' Life_Expectancy ' as dependent variable:  0.735980576084885"
+[1] "Multiple correlation coefficient with ' Freedom ' as dependent variable:  0.559356741068551"
+
+
+=========================================================================
+
+[1] "P-value for ' Happiness_Score ' as dependent variable:  3.47733795736664e-70"
+[1] "P-value for ' Life_Expectancy ' as dependent variable:  5.76211134179655e-55"
+[1] "P-value for ' Freedom ' as dependent variable:  2.50471825744275e-27"
+
+
+=========================================================================
+
+[1] "Coefficient of determination for ' Happiness_Score ' as dependent variable:  0.633438012905498"
+[1] "Coefficient of determination for ' Life_Expectancy ' as dependent variable:  0.54166740837424"
+[1] "Coefficient of determination for ' Freedom ' as dependent variable:  0.31287996377883"
+
+
+=========================================================================
+

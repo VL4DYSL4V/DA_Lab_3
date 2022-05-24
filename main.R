@@ -7,8 +7,8 @@ myData <- read.csv('output.csv')
 
 Happiness_Score <- myData$Happiness_Score
 Happiness_Score_Name <- "Happiness_Score"
-Family <- myData$Family
-Family_Name <- "Family"
+Life_Expectancy <- myData$Life_Expectancy
+Life_Expectancy_Name <- "Life_Expectancy"
 Freedom <- myData$Freedom
 Freedom_Name <- "Freedom"
 
@@ -22,7 +22,7 @@ printEmptyLine <- function() {
 
 buildFrequencyPolygons <- function() {
   chart1 <- qplot(x = Happiness_Score, geom = 'freqpoly')
-  chart2 <- qplot(x = Family, geom = 'freqpoly')
+  chart2 <- qplot(x = Life_Expectancy, geom = 'freqpoly')
   chart3 <- qplot(x = Freedom, geom = 'freqpoly')
   return(list(
     chart1=chart1,
@@ -247,30 +247,30 @@ anayzeOneVector <- function (vector, vectorName) {
 
 analyzeCorrelation <- function() {
   printDelimiterWithNewLines()
-  printCorellationCoefficient(Happiness_Score, Family, Happiness_Score_Name, Family_Name)
+  printCorellationCoefficient(Happiness_Score, Life_Expectancy, Happiness_Score_Name, Life_Expectancy_Name)
   printCorellationCoefficient(Happiness_Score, Freedom, Happiness_Score_Name, Freedom_Name)
-  printCorellationCoefficient(Family, Freedom, Family_Name, Freedom_Name)
+  printCorellationCoefficient(Life_Expectancy, Freedom, Life_Expectancy_Name, Freedom_Name)
   printDelimiterWithNewLines()
-  printPValue(Happiness_Score, Family, Happiness_Score_Name, Family_Name)
+  printPValue(Happiness_Score, Life_Expectancy, Happiness_Score_Name, Life_Expectancy_Name)
   printPValue(Happiness_Score, Freedom, Happiness_Score_Name, Freedom_Name)
-  printPValue(Family, Freedom, Family_Name, Freedom_Name)
+  printPValue(Life_Expectancy, Freedom, Life_Expectancy_Name, Freedom_Name)
   printDelimiterWithNewLines()
-  printDeterminationCoefficient(Happiness_Score, Family, Happiness_Score_Name, Family_Name)
+  printDeterminationCoefficient(Happiness_Score, Life_Expectancy, Happiness_Score_Name, Life_Expectancy_Name)
   printDeterminationCoefficient(Happiness_Score, Freedom, Happiness_Score_Name, Freedom_Name)
-  printDeterminationCoefficient(Family, Freedom, Family_Name, Freedom_Name)
+  printDeterminationCoefficient(Life_Expectancy, Freedom, Life_Expectancy_Name, Freedom_Name)
   printDelimiterWithNewLines()
 
-  printMultipleCorrelationCoefficient(Happiness_Score_Name, c(Family_Name, Freedom_Name))
-  printMultipleCorrelationCoefficient(Family_Name, c(Happiness_Score_Name, Freedom_Name))
-  printMultipleCorrelationCoefficient(Freedom_Name, c(Happiness_Score_Name, Family_Name))
+  printMultipleCorrelationCoefficient(Happiness_Score_Name, c(Life_Expectancy_Name, Freedom_Name))
+  printMultipleCorrelationCoefficient(Life_Expectancy_Name, c(Happiness_Score_Name, Freedom_Name))
+  printMultipleCorrelationCoefficient(Freedom_Name, c(Happiness_Score_Name, Life_Expectancy_Name))
   printDelimiterWithNewLines()
-  printMultiplePValue(Happiness_Score_Name, c(Family_Name, Freedom_Name))
-  printMultiplePValue(Family_Name, c(Happiness_Score_Name, Freedom_Name))
-  printMultiplePValue(Freedom_Name, c(Happiness_Score_Name, Family_Name))
+  printMultiplePValue(Happiness_Score_Name, c(Life_Expectancy_Name, Freedom_Name))
+  printMultiplePValue(Life_Expectancy_Name, c(Happiness_Score_Name, Freedom_Name))
+  printMultiplePValue(Freedom_Name, c(Happiness_Score_Name, Life_Expectancy_Name))
   printDelimiterWithNewLines()
-  printMultipleDeterminationCoefficient(Happiness_Score_Name, c(Family_Name, Freedom_Name))
-  printMultipleDeterminationCoefficient(Family_Name, c(Happiness_Score_Name, Freedom_Name))
-  printMultipleDeterminationCoefficient(Freedom_Name, c(Happiness_Score_Name, Family_Name))
+  printMultipleDeterminationCoefficient(Happiness_Score_Name, c(Life_Expectancy_Name, Freedom_Name))
+  printMultipleDeterminationCoefficient(Life_Expectancy_Name, c(Happiness_Score_Name, Freedom_Name))
+  printMultipleDeterminationCoefficient(Freedom_Name, c(Happiness_Score_Name, Life_Expectancy_Name))
   printDelimiterWithNewLines()
 }
 
@@ -278,6 +278,6 @@ buildFrequencyPolygons()
 
 anayzeOneVector(Happiness_Score, Happiness_Score_Name)
 anayzeOneVector(Freedom, Freedom_Name)
-anayzeOneVector(Family, Family_Name)
+anayzeOneVector(Life_Expectancy, Life_Expectancy_Name)
 
 analyzeCorrelation()
