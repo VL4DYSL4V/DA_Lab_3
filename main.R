@@ -278,11 +278,6 @@ analyzeCorrelation <- function() {
   printDelimiterWithNewLines()
 }
 
-printCorrelationMatrix <- function(data) {
-  print("Correlation matrix:")
-  print(cor(data))
-}
-
 buildVariableRatiocharts <- function(data) {
   # chart <- ggpairs(dataSlice)
   scatterplotMatrix(
@@ -295,13 +290,13 @@ printSummaryForModel <- function(model) {
   print(summary(model))
 }
 
-printConfidenceIntervals <- function(model) {
-  print("Confidence intervals:")
-  print(confint(model))
+printVIF <- function(model) {
+  print("Variance Inflation Factor:")
+  print(vif(model))
 }
 
-printBreushPaganTestResult <- function(model) {
-  print("Breush-Pagan Test:")
+printBreuschPaganTestResult <- function(model) {
+  print("Breusсh-Pagan Test:")
   print(bptest(model))
 }
 
@@ -319,16 +314,14 @@ buildResidualsPlot <- function(model, data) {
 buildModel <- function() {
   myDataSlice <- myData[, c(Happiness_Score_Name, Life_Expectancy_Name, Freedom_Name)]
   buildVariableRatiocharts(myDataSlice)
-  printDelimiterWithNewLines()
-  printCorrelationMatrix(myDataSlice)
   formula <- reformulate(c(Life_Expectancy_Name, Freedom_Name), Happiness_Score_Name)
   model <- lm(formula, data = myDataSlice)
   printDelimiterWithNewLines()
   printSummaryForModel(model)
   printDelimiterWithNewLines()
-  printConfidenceIntervals(model)
+  printVIF(model)
   printDelimiterWithNewLines()
-  printBreushPaganTestResult(model)
+  printBreuschPaganTestResult(model)
   printDelimiterWithNewLines()
   printDurbinWatsonTestResult(model)
   printDelimiterWithNewLines()
