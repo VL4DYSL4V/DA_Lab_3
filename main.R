@@ -2,6 +2,10 @@ library(ggplot2)
 library("psych")
 library("DescTools")
 library("e1071")
+# library(ggplot2)
+# library(GGally)
+library(car)
+library(lmtest)
 
 myData <- read.csv('output.csv')
 
@@ -25,19 +29,19 @@ buildFrequencyPolygons <- function() {
   chart2 <- qplot(x = Life_Expectancy, geom = 'freqpoly')
   chart3 <- qplot(x = Freedom, geom = 'freqpoly')
   return(list(
-    chart1=chart1,
-    chart2=chart2,
-    chart3=chart3
+    chart1 = chart1,
+    chart2 = chart2,
+    chart3 = chart3
   ))
 }
 
-printSummary <- function (vector, name) {
+printSummary <- function(vector, name) {
   summary <- summary(vector)
   print(paste("Summary of '", name, "': "))
   print(summary)
 }
 
-printDeciles <- function (vector, name) {
+printDeciles <- function(vector, name) {
   deciles <- quantile(
     vector,
     probs = seq(.1, .9, by = .1)
@@ -46,15 +50,15 @@ printDeciles <- function (vector, name) {
   print(deciles)
 }
 
-printGeometricalMeanWithoutZeroes <- function (vector, name) {
+printGeometricalMeanWithoutZeroes <- function(vector, name) {
   print(
     paste(
-      "Geometric Mean of '", name, "': ", exp(mean(log(vector[vector>0])))
+      "Geometric Mean of '", name, "': ", exp(mean(log(vector[vector > 0])))
     )
   )
 }
 
-printHarmonicMeanWithoutZeroes <- function (vector, name) {
+printHarmonicMeanWithoutZeroes <- function(vector, name) {
   print(
     paste(
       "Harmonic Mean of '", name, "': ", harmonic.mean(vector, zero = FALSE)
@@ -62,7 +66,7 @@ printHarmonicMeanWithoutZeroes <- function (vector, name) {
   )
 }
 
-printMode <- function (vector, name) {
+printMode <- function(vector, name) {
   vectorMode <- Mode(vector)
   print(
     paste(
@@ -71,7 +75,7 @@ printMode <- function (vector, name) {
   )
 }
 
-printDispersion <- function (vector, name) {
+printDispersion <- function(vector, name) {
   dispersion <- var(vector)
   print(
     paste(
@@ -80,7 +84,7 @@ printDispersion <- function (vector, name) {
   )
 }
 
-printStandardDeviation <- function (vector, name) {
+printStandardDeviation <- function(vector, name) {
   sd <- sd(vector)
   print(
     paste(
@@ -89,7 +93,7 @@ printStandardDeviation <- function (vector, name) {
   )
 }
 
-printCoefficientOfVariation <- function (vector, name) {
+printCoefficientOfVariation <- function(vector, name) {
   cv <- sd(vector) / mean(vector) * 100
   print(
     paste(
@@ -98,7 +102,7 @@ printCoefficientOfVariation <- function (vector, name) {
   )
 }
 
-printProbabilisticDeviation <- function (vector, name) {
+printProbabilisticDeviation <- function(vector, name) {
   pd <- IQR(vector) / 2
   print(
     paste(
@@ -107,7 +111,7 @@ printProbabilisticDeviation <- function (vector, name) {
   )
 }
 
-printSamplingSpan <- function (vector, name) {
+printSamplingSpan <- function(vector, name) {
   max <- max(vector)
   min <- min(vector)
   print(
@@ -117,7 +121,7 @@ printSamplingSpan <- function (vector, name) {
   )
 }
 
-printConcentrationInterval <- function (vector, name) {
+printConcentrationInterval <- function(vector, name) {
   mean <- mean(vector)
   sd <- sd(vector)
   print(
@@ -127,7 +131,7 @@ printConcentrationInterval <- function (vector, name) {
   )
 }
 
-printKurtosis <- function (vector, name) {
+printKurtosis <- function(vector, name) {
   print(
     paste(
       "Kurtosis of '", name, "': ", kurtosis(vector)
@@ -135,7 +139,7 @@ printKurtosis <- function (vector, name) {
   )
 }
 
-printSkewness <- function (vector, name) {
+printSkewness <- function(vector, name) {
   print(
     paste(
       "Skewness of '", name, "': ", skewness(vector)
@@ -215,7 +219,7 @@ printMultiplePValue <- function(
   )
 }
 
-anayzeOneVector <- function (vector, vectorName) {
+anayzeOneVector <- function(vector, vectorName) {
   printDelimiterWithNewLines()
   printSummary(vector, vectorName)
   printEmptyLine()
@@ -274,10 +278,69 @@ analyzeCorrelation <- function() {
   printDelimiterWithNewLines()
 }
 
-buildFrequencyPolygons()
+printCorrelationMatrix <- function(data) {
+  print("Correlation matrix:")
+  print(cor(data))
+}
 
-anayzeOneVector(Happiness_Score, Happiness_Score_Name)
-anayzeOneVector(Freedom, Freedom_Name)
-anayzeOneVector(Life_Expectancy, Life_Expectancy_Name)
+buildVariableRatiocharts <- function(data) {
+  # chart <- ggpairs(dataSlice)
+  scatterplotMatrix(
+    data, spread = FALSE, lty.smooth = 2, main = 'Variables Ratio'
+  )
+}
 
-analyzeCorrelation()
+printSummaryForModel <- function(model) {
+  print("Summary for model:")
+  print(summary(model))
+}
+
+printConfidenceIntervals <- function(model) {
+  print("Confidence intervals:")
+  print(confint(model))
+}
+
+printBreushPaganTestResult <- function(model) {
+  print("Breush-Pagan Test:")
+  print(bptest(model))
+}
+
+printDurbinWatsonTestResult <- function(model) {
+  print("Durbin-Watson test:")
+  print(durbinWatsonTest(model))
+}
+
+buildResidualsPlot <- function(model, data) {
+  ggplot(data = data, aes(x = model$residuals)) +
+    geom_histogram(fill = 'steelblue', color = 'black') +
+    labs(title = 'Histogram of Residuals', x = 'Residuals', y = 'Frequency')
+}
+
+buildModel <- function() {
+  myDataSlice <- myData[, c(Happiness_Score_Name, Life_Expectancy_Name, Freedom_Name)]
+  buildVariableRatiocharts(myDataSlice)
+  printDelimiterWithNewLines()
+  printCorrelationMatrix(myDataSlice)
+  formula <- reformulate(c(Life_Expectancy_Name, Freedom_Name), Happiness_Score_Name)
+  model <- lm(formula, data = myDataSlice)
+  printDelimiterWithNewLines()
+  printSummaryForModel(model)
+  printDelimiterWithNewLines()
+  printConfidenceIntervals(model)
+  printDelimiterWithNewLines()
+  printBreushPaganTestResult(model)
+  printDelimiterWithNewLines()
+  printDurbinWatsonTestResult(model)
+  printDelimiterWithNewLines()
+  buildResidualsPlot(model, myDataSlice)
+}
+
+# buildFrequencyPolygons()
+#
+# anayzeOneVector(Happiness_Score, Happiness_Score_Name)
+# anayzeOneVector(Freedom, Freedom_Name)
+# anayzeOneVector(Life_Expectancy, Life_Expectancy_Name)
+#
+# analyzeCorrelation()
+
+buildModel()
